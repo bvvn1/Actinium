@@ -1,0 +1,13 @@
+[package]
+name = "actinium_kernel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bootloader = "0.9"
+
+[[bin]]
+name = "actinium_kernel"
+path = "src/main.rs"
+test = false
+bench = false

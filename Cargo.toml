@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["src/bin/kernel"]
+members = ["src/bin/actinium_kernel"]
 
 
 
