@@ -1,0 +1,14 @@
+[workspace]
+resolver = "3"
+members = ["src/bin/kernel"]
+
+
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+
+[workspace.dependencies]
