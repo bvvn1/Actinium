@@ -13,14 +13,15 @@ lazy_static! {
     });
 }
 
-pub mod macros;
 mod panic;
+mod serial;
+mod status;
 mod vga_buffer;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
     let goyko = 12;
-    println!("dj pichka {}", goyko);
+    serial_print!("go {}", goyko);
 
     loop {}
 }
