@@ -2,21 +2,24 @@
 #![no_main]
 static PRINT_TEST: &[u8] = b"we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500we are so back x500 we are so back x500  we are so back x500 we are so back x500  we are so back x500we are so back x500";
 
+use crate::vga_buffer::{Buffer, Color, ColorCode, Writer};
+use lazy_static::lazy_static;
+use spin::Mutex;
+
+lazy_static! {
+    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) }
+    });
+}
+
+pub mod macros;
 mod panic;
 mod vga_buffer;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    let vga_buffer: &mut [u8; 2048] = {
-        let address = 0xb8000;
-        let ptr = address as *mut [u8; 2048];
-        unsafe { &mut *ptr }
-    };
-
-    for (i, &byte) in PRINT_TEST.iter().enumerate() {
-        vga_buffer[i * 2] = byte;
-        vga_buffer[i * 2 + 1] = 0xb;
-    }
-
+    println!("goykonegur");
     loop {}
 }
