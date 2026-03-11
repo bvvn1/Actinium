@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-static PRINT_TEST: &[u8] = b"we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500 we are so back x500we are so back x500 we are so back x500  we are so back x500 we are so back x500  we are so back x500we are so back x500";
 
 use crate::vga_buffer::{Buffer, Color, ColorCode, Writer};
 use lazy_static::lazy_static;
@@ -20,6 +19,8 @@ mod vga_buffer;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn _start() -> ! {
-    println!("goykonegur");
+    let goyko = 12;
+    println!("dj pichka {}", goyko);
+
     loop {}
 }
