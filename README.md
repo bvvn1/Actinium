@@ -11,8 +11,12 @@ The kernel currently includes :
 
 
 >[!CAUTION]
->You must have the Rust toolchain setup
+>You must have the Rust nightly toolchain setup
 
+```
+rustup toolchain install nightly
+rustup target add x86_64-unknown-none
+```
 
 
 > [!IMPORTANT]
