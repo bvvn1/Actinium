@@ -119,8 +119,28 @@ impl Write for Writer {
 //macro definitions
 //
 
-use crate::{WRITER, serial::SERIAL1};
+use crate::WRITER;
 
+#[test_case]
+fn test_println() {
+    crate::print!("{}\n", format_args!("test_println output"));
+}
+
+#[test_case]
+fn test_println_many() {
+    for _ in 0..200 {
+        crate::print!("{}\n", format_args!("test_println_many output"));
+    }
+}
+#[test_case]
+fn test_println_output() {
+    let s = "Some random ass string";
+    crate::print!("{}\n", format_args!("{}", s));
+    for (i, c) in s.chars().enumerate() {
+        let display_char = WRITER.lock().buffer.chars[BUFFER_HEIGHT - 2][i].read();
+        assert_eq!(char::from(display_char.ascii_character), c);
+    }
+}
 #[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => ($crate::vga_buffer::_print(format_args!($($arg)*)));

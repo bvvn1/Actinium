@@ -19,10 +19,16 @@ features = ["spin_no_std"]
 [[bin]]
 name = "actinium_kernel"
 path = "src/main.rs"
-test = false
+test = true
 bench = false
 
 
  
 [package.metadata.bootimage]
-test-args = ["stdio,-serial, -device", "isa-debug-exit,iobase=0xf4,iosize=0x04"]
+test-args = [
+    "-device", "isa-debug-exit,iobase=0xf4,iosize=0x04",
+    "-serial", "stdio",
+    "-display", "none" ,
+]
+test-timeout = 300
+test-success-exit-code = 33         
